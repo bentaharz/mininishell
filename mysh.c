@@ -5,7 +5,7 @@
 ** Login   <kapand_v@epitech.net>
 **
 ** Started on  Tue May 22 15:24:45 2012 victor kapandji
-** Last update Thu May 31 19:03:25 2012 victor kapandji
+** Last update Thu May 31 19:19:25 2012 victor kapandji
 */
 
 #include	"./include/my.h"
@@ -66,11 +66,11 @@ char		*epure_str(char *com)
   start = find_start(com);
   end = find_end(com);
   i = 0;
-  if ((to_return = malloc(sizeof(char) * cmp_l(com) + 1)) == NULL)
+  if ((to_return = malloc(sizeof(char) * cmp_l(com))) == NULL)
     return ("Error malloc");
   while (start < end)
     {
-      if (com[start] == ' ' && i < end)
+      if (com[start] == ' ' && i != end)
 	{
 	  to_return[i] = com[start];
 	  while (com[start] == ' ')
