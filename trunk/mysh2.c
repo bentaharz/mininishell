@@ -5,7 +5,7 @@
 ** Login   <kapand_v@epitech.net>
 **
 ** Started on  Wed May 23 16:57:28 2012 victor kapandji
-** Last update Thu May 31 19:10:52 2012 victor kapandji
+** Last update Thu May 31 19:18:07 2012 victor kapandji
 */
 
 #include	"./include/my.h"
@@ -27,6 +27,7 @@ int		find_end(char *str)
   end = my_strlen(str);
   while (str[end] == ' ')
     end--;
+  end--;
   return (end);
 }
 
