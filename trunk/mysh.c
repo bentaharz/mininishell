@@ -98,9 +98,10 @@ char		**tmalloc(char *com)
   i = 0;
   y = 0;
   size = 0;
+  printf((" com %s :\n"), (com));
   if ((to_return = malloc(sizeof(char*) * cmp_com(com))) == NULL)
     return NULL;
-  to_return[cmp_com(com) + 1] = NULL;
+  to_return[cmp_com(com)] = NULL;
   while (com[i])
     {
       if (com[i] != ' ')
@@ -108,9 +109,10 @@ char		**tmalloc(char *com)
 	  size++;
 	  i++;
 	}
-      else
+       if (com[i] == ' ' || !(com[i + 1]))
 	{
-	  if ((to_return[y] = malloc(sizeof(char) * size + 1)) == NULL)
+	  printf("mallocing line %d of nb %d\n", y, size + 1);
+	  if ((to_return[y] = malloc(sizeof(char) * (size + 1))) == NULL)
 	    return NULL;
 	  to_return[y][size + 1] = '\0';
 	  size = 0;
@@ -128,6 +130,7 @@ char		**cut_com(char *com)
   int		y;
   int		c;
 
+  c = 0;
   i = 0;
   y = 0;
   to_return = tmalloc(com);
@@ -136,8 +139,10 @@ char		**cut_com(char *com)
     {
       if (com[i] != ' ')
 	{
-	  //my_printf("Ok2");
+	  printf("Ok2 start y:%d c:%d\n", y, c);
 	  to_return[y][c] = com[i];
+	  printf("Ok2 stop \n");
+
 	  my_printf("%c", to_return[y][c]);
 	  c++;
 	  i++;
