@@ -5,7 +5,7 @@
 ** Login   <kapand_v@epitech.net>
 **
 ** Started on  Tue May 22 15:24:45 2012 victor kapandji
-** Last update Thu May 31 19:19:25 2012 victor kapandji
+** Last update Thu May 31 20:15:07 2012 victor kapandji
 */
 
 #include	"./include/my.h"
@@ -98,27 +98,23 @@ char		**tmalloc(char *com)
   i = 0;
   y = 0;
   size = 0;
-  printf((" com %s :\n"), (com));
   if ((to_return = malloc(sizeof(char*) * cmp_com(com))) == NULL)
     return NULL;
   to_return[cmp_com(com)] = NULL;
   while (com[i])
     {
-      if (com[i] != ' ')
+      if (com[i] == ' ' || !(com[i + 1]))
 	{
-	  size++;
-	  i++;
-	}
-       if (com[i] == ' ' || !(com[i + 1]))
-	{
-	  printf("mallocing line %d of nb %d\n", y, size + 1);
+	  if (!(com[i + 1]))
+	    size++;
 	  if ((to_return[y] = malloc(sizeof(char) * (size + 1))) == NULL)
 	    return NULL;
 	  to_return[y][size + 1] = '\0';
 	  size = 0;
 	  y++;
-	  i++;
 	}
+      size++;
+      i++;
     }
   return (to_return);
 }
@@ -134,34 +130,20 @@ char		**cut_com(char *com)
   i = 0;
   y = 0;
   to_return = tmalloc(com);
-  my_printf("Ok\n");
   while (com[i])
     {
       if (com[i] != ' ')
 	{
-	  printf("Ok2 start y:%d c:%d\n", y, c);
 	  to_return[y][c] = com[i];
-	  printf("Ok2 stop \n");
-
-	  my_printf("%c", to_return[y][c]);
 	  c++;
 	  i++;
 	}
       else
 	{
-	  my_printf("Ok3\n");
 	  y++;
 	  i++;
 	  c = 0;
 	}
-    }
-
-  i = 0;
-  my_printf("Ok4\n");
-  while (to_return[i])
-    {
-      my_printf("commande[%d] : %s\n", i, to_return[i]);
-      i++;
     }
 }
 
@@ -180,4 +162,12 @@ void		mysh()
   my_printf("Commande : %s$\n", buff);
 
   tab_com = cut_com(buff);
+
+  i = 0;
+  while (tab_com[i])
+    {
+      my_printf("commande[%d] : %s\n", i, tab_com[i]);
+      i++;
+    }
+
 }
