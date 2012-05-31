@@ -53,8 +53,8 @@ RM= rm -f
 $(NAME):	$(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-	cp my.h /u/all/kapand_v/rendu/include
-	cp libmy.a /u/all/kapand_v/rendu/lib
+	cp my.h ../
+	cp libmy.a ../
 
 clean:
 	@$(RM) $(OBJ)
